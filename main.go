@@ -21,6 +21,10 @@ func fileExist(fname string) bool {
 	return err == nil
 }
 
+// Auth gets Psersonal access token of GitHub.
+// username and password are got from STDIN
+// And save key to the file.
+// If you have the key already at the file, CLI returns this.
 func CLI(appName, fname string) (string, error) {
 	if fileExist(fname) {
 		b, err := ioutil.ReadFile(fname)
@@ -48,6 +52,7 @@ func CLI(appName, fname string) (string, error) {
 	return key, nil
 }
 
+// Auth gets Psersonal access token of GitHub.
 func Auth(user, pass, appName string) (string, error) {
 	hostname, err := os.Hostname()
 	if err != nil {
