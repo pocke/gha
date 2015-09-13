@@ -21,7 +21,7 @@ func fileExist(fname string) bool {
 	return err == nil
 }
 
-// Auth gets Psersonal access token of GitHub.
+// CLI gets Psersonal access token of GitHub.
 // username and password are got from STDIN
 // And save key to the file.
 // If you have the key already at the file, CLI returns this.
