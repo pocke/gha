@@ -7,7 +7,9 @@ import (
 )
 
 func main() {
-	key, err := gha.CLI("test app for gha", "test-key")
+	key, err := gha.CLI("test-key", &gha.Request{
+		Note: "test app for gha",
+	})
 	if err != nil {
 		panic(err)
 	}

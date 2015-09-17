@@ -19,7 +19,7 @@ func fileExist(fname string) bool {
 // username and password are got from STDIN
 // And save key to the file.
 // If you have the key already at the file, CLI returns this.
-func CLI(appName, fname string) (string, error) {
+func CLI(fname string, r *Request) (string, error) {
 	if fileExist(fname) {
 		b, err := ioutil.ReadFile(fname)
 		return string(b), err
@@ -30,7 +30,7 @@ func CLI(appName, fname string) (string, error) {
 		return "", err
 	}
 
-	key, err := Auth(user, pass, appName)
+	key, err := Auth(user, pass, r)
 	if err != nil {
 		return "", err
 	}

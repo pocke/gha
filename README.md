@@ -24,7 +24,10 @@ Usage
 import "github.com/pocke/gha"
 
 func main() {
-  key, err := gha.Auth("pocke", "PASSWORD", "Test App")
+  key, err := gha.Auth("pocke", "PASSWORD", gha.Request{
+    Note: "gist-app",
+    Scopes: []string{"gist"},
+  })
   if err != nil {
     panic(err)
   }
@@ -40,7 +43,9 @@ func main() {
 import "github.com/pocke/gha"
 
 func main() {
-  key, err := gha.CLI(appName, "key.txt")
+  key, err := gha.CLI("key.txt", gha.Request{
+    Note: "hoge-app",
+  })
   if err != nil {
     panic(err)
   }
