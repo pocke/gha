@@ -85,6 +85,7 @@ func readPassword(user string) (string, error) {
 		}
 
 		if v == 13 || v == 10 {
+			fmt.Println()
 			return string(res), nil
 		}
 
