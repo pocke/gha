@@ -25,7 +25,7 @@ func CLI(appName, fname string) (string, error) {
 		return string(b), err
 	}
 
-	user, pass, err := GetUserInfo()
+	user, pass, err := getUserInfo()
 	if err != nil {
 		return "", err
 	}
@@ -41,13 +41,13 @@ func CLI(appName, fname string) (string, error) {
 	return key, nil
 }
 
-func GetUserInfo() (string, string, error) {
-	user, err := ReadUsername()
+func getUserInfo() (string, string, error) {
+	user, err := readusername()
 	if err != nil {
 		return "", "", err
 	}
 
-	pass, err := ReadPassword(user)
+	pass, err := readPassword(user)
 	if err != nil {
 		return "", "", err
 	}
@@ -55,7 +55,7 @@ func GetUserInfo() (string, string, error) {
 	return user, pass, nil
 }
 
-func ReadUsername() (string, error) {
+func readusername() (string, error) {
 	tty, err := os.Open("/dev/tty")
 	if err != nil {
 		return "", err
@@ -69,12 +69,12 @@ func ReadUsername() (string, error) {
 	return sc.Text(), nil
 }
 
-func ReadPassword(user string) (string, error) {
+func readPassword(user string) (string, error) {
 	fmt.Printf("password for %s (never stored): ", user)
 	res := make([]byte, 0)
 
 	for {
-		v, err := ReadCharAsPassword()
+		v, err := readCharAsPassword()
 		if err != nil {
 			return "", err
 		}
@@ -99,7 +99,7 @@ func ReadPassword(user string) (string, error) {
 	}
 }
 
-func ReadCharAsPassword() (byte, error) {
+func readCharAsPassword() (byte, error) {
 	tty, err := os.Open("/dev/tty")
 	if err != nil {
 		return 0, nil
