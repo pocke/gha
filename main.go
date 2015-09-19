@@ -25,7 +25,7 @@ func Auth(user, pass string, r *Request) (string, error) {
 		return "", err
 	}
 
-	r.Note = fmt.Sprintf("%s@%s", r.Note, hostname)
+	r.Note = fmt.Sprintf("%s for %s@%s", r.Note, os.Getenv("USER"), hostname)
 	reqBuf := bytes.NewBuffer([]byte{})
 	json.NewEncoder(reqBuf).Encode(r)
 	req, err := http.NewRequest(
